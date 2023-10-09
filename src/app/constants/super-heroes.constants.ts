@@ -23,4 +23,46 @@ export const SUPER_HEROES_LIST_DEFAULT = [
         realName: 'Logan',
         age: 27
     },
+    {
+        heroId: 5,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 6,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 7,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 8,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 9,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 10,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
+    {
+        heroId: 11,
+        name: 'Generic Super Hero',
+        realName: 'Generic Name',
+        age: 30
+    },
 ]

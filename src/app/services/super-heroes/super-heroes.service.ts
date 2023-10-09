@@ -11,11 +11,6 @@ export class SuperHeroesService {
 
   constructor() { }
 
-  resetSuperHeroesList() {
-    this.superHeroesList = SUPER_HEROES_LIST_DEFAULT;
-    this._superHeroesList.next(this.superHeroesList);
-  }
-
   readSuperHeroes() {
     this._superHeroesList.next(this.superHeroesList);
   }
@@ -26,7 +21,7 @@ export class SuperHeroesService {
   }
 
   findSuperHeroByName(name: string) {
-    const query = name.toUpperCase();
+    const query = name.trim().toUpperCase();
     const foundHeroes = this.superHeroesList.filter((hero: SuperHero) => hero.name.toUpperCase().includes(query));
     this._superHeroesList.next(foundHeroes);
   }

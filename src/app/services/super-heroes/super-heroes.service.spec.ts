@@ -14,10 +14,6 @@ describe('SuperHeroesService read operations', () => {
     service = TestBed.inject(SuperHeroesService);
   });
 
-  afterEach(() => {
-    service.resetSuperHeroesList();
-  })
-
   it('should read super heroes list', () => {
     let result: SuperHero[] = [];
     service.readSuperHeroes();
@@ -44,7 +40,6 @@ describe('SuperHeroesService read operations', () => {
     service.modifyHero(MOCKDIFIED_HERO);
     service.superHeroesList$.pipe(first()).subscribe(res => result = res).unsubscribe();
     expect(result[2].name).toBe('Manolito stronger than ever');
-    service.resetSuperHeroesList();
   });
 
   it('should delete a super hero', () => {
