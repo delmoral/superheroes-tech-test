@@ -1,1 +1,40 @@
-<p>super-hero-detail works!</p>
+<section>
+    <h1 class="title-text">{{ currentHero.heroId === 0 ? 'Create' : 'Update' }} Super Hero</h1>
+
+    <form #detailForm="ngForm" (ngSubmit)="saveSuperHero()" class="hero-form">
+        <div>
+            <mat-form-field class="form-field">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" name="name" type="text" [(ngModel)]="currentHero.name" required>
+                <button *ngIf="currentHero.name" (click)="currentHero.name = ''" matSuffix mat-icon-button
+                    aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-label>Real name</mat-label>
+                <input matInput placeholder="Real Name" name="realName" type="text" [(ngModel)]="currentHero.realName"
+                    required>
+                <button *ngIf="currentHero.realName" (click)="currentHero.realName = ''" matSuffix mat-icon-button
+                    aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Age" name="age" type="number" [(ngModel)]="currentHero.age" min="18"
+                    required>
+                <button *ngIf="currentHero.age" (click)="currentHero.age = 0;" matSuffix mat-icon-button
+                    aria-label="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="!detailForm.valid">
+            {{ currentHero.heroId === 0 ? 'Create' : 'Update' }}
+        </button>
+    </form>
+</section>

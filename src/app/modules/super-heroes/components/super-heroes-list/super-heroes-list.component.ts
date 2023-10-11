@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SuperHero } from 'src/app/models/super-heroes.model';
 import { SuperHeroesService } from 'src/app/services/super-heroes/super-heroes.service';
@@ -21,7 +22,10 @@ export class SuperHeroesListComponent implements OnInit, OnDestroy {
 
   suscriptions: Subscription[] = []
 
-  constructor(private superHeroesService: SuperHeroesService) { }
+  constructor(
+    private superHeroesService: SuperHeroesService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.superHeroesService.readSuperHeroes();
@@ -43,15 +47,15 @@ export class SuperHeroesListComponent implements OnInit, OnDestroy {
   }
 
   createSuperHero() {
-    console.log('createSuperHero')
+    this.router.navigate(['/new'], { state: { newId: this.superHeroesList.length + 1 } });
   }
 
   modifySuperHero(heroId: number) {
-    console.log('modifySuperHero', heroId)
+    this.router.navigate([`/${heroId}`]);
   }
 
   deleteSuperHero(heroId: number) {
-    console.log('deleteSuperHero', heroId)
+    this.superHeroesService.deleteHero(heroId)
   }
 
   handlePageEvent(e: PageEvent) {
