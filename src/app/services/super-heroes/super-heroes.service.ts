@@ -16,8 +16,8 @@ export class SuperHeroesService {
   }
 
   findSuperHeroById(id: number) {
-    const foundHero = this.superHeroesList.filter((hero: SuperHero) => hero.heroId === id);
-    this._superHeroesList.next(foundHero);
+    // return a copy, not the array element to avoid external modifications
+    return Object.assign({}, this.superHeroesList.filter((hero: SuperHero) => hero.heroId === id)[0]);
   }
 
   findSuperHeroByName(name: string) {
@@ -26,7 +26,12 @@ export class SuperHeroesService {
     this._superHeroesList.next(foundHeroes);
   }
 
-  modifyHero(newHeroData: SuperHero) {
+  createHero(newHeroData: SuperHero) {
+    this.superHeroesList.push(newHeroData);
+    this._superHeroesList.next(this.superHeroesList);
+  }
+
+  updateHero(newHeroData: SuperHero) {
     const heroIndex = this.superHeroesList.findIndex(hero => hero.heroId === newHeroData.heroId);
     this.superHeroesList[heroIndex] = newHeroData;
     this._superHeroesList.next(this.superHeroesList);
