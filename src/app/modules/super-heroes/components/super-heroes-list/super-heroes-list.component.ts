@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SuperHero } from 'src/app/models/super-heroes.model';
 import { SuperHeroesService } from 'src/app/services/super-heroes/super-heroes.service';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-super-heroes-list',
@@ -24,7 +26,8 @@ export class SuperHeroesListComponent implements OnInit, OnDestroy {
 
   constructor(
     private superHeroesService: SuperHeroesService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -54,8 +57,13 @@ export class SuperHeroesListComponent implements OnInit, OnDestroy {
     this.router.navigate([`/${heroId}`]);
   }
 
-  deleteSuperHero(heroId: number) {
-    this.superHeroesService.deleteHero(heroId)
+  deleteSuperHero(hero: SuperHero) {
+    this.dialog.open(DeleteDialogComponent, { data: { name: hero.name } })
+      .afterClosed().subscribe(result => {
+        if (result) {
+          this.superHeroesService.deleteHero(hero.heroId)
+        }
+      });
   }
 
   handlePageEvent(e: PageEvent) {

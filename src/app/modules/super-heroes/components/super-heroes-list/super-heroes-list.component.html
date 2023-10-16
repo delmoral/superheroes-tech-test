@@ -10,11 +10,6 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
-
-        <button mat-raised-button color="accent" (click)="createSuperHero()">
-            <span>Create</span>
-            <mat-icon>add</mat-icon>
-        </button>
     </form>
 
     <div>
@@ -51,7 +46,7 @@
                             <span>Edit</span>
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-menu-item (click)="deleteSuperHero(row.heroId)">
+                        <button mat-menu-item (click)="deleteSuperHero(row)">
                             <span>Delete</span>
                             <mat-icon>delete</mat-icon>
                         </button>
@@ -69,6 +64,15 @@
 
         <mat-paginator #paginator (page)="handlePageEvent($event)" [pageSizeOptions]="[5, 10]"
             [length]="superHeroesList.length" [pageSize]="pageSize" [pageIndex]="pageIndex" showFirstLastButtons="true"
-            aria-label="Select page of super heroes"></mat-paginator>
+            aria-label="Select page of super heroes">
+        </mat-paginator>
     </div>
+
+    <div class="new-hero-wrapper">
+        <button mat-raised-button color="accent" (click)="createSuperHero()">
+            <span>New Superhero</span>
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
 </section>
