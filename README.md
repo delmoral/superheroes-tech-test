@@ -15,3 +15,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * typescript 4.9.4
 * @angular/material 15.2.9
 * Node 18.16.1
+
+## Development server
+_Make sure you have Node version 18.16.1 or above._
+
+In the root folder run `npx npm install` to download the needed packages.
+
+Run `npx ng serve` to start dev server. Once up, you can go to [http://localhost:4200](http://localhost:4200/)
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests.
